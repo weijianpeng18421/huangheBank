@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>缴费信息录入</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<style>
+			body{
+				background-color: #ffffff;
+				color: #585858;
+			}
+			.content{
+				
+			}
+			.form-content{
+				box-shadow: 0px 7px 10px -7px #d5d5d5;
+			}
+			
+			.my-title-ico{
+				width: 4px;
+				height: 20px;
+				background: #ff6565;
+				border-radius: 4px;
+				margin-right: 12px;
+			}
+			.mui-content{
+				width: 100%;
+			}
+			.mui-btn-block{
+				margin: 2% 0;
+				padding: 6px 0;
+			}
+			.btn-next{
+				width: 80%;
+				height: 5.0em;
+				margin: 30px auto;
+				text-align: center
+			}
+			
+			.value-style{
+				font-size: 14px;
+				color: #848484;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="content">
+			<div class="form-content">
+				<div class="form-content">
+					<img class="mui-content" src="../static/images/yinhang01.png" />
+					<div class="mui-table-view" style="font-size: 15px;margin-top: -45px;">
+						<div class="mui-table-view-cell mui-media">
+							<div class="my-title-ico mui-pull-left"></div>
+							<div class='mui-ellipsis'>宁夏城乡居民社保缴费</div>
+						</div>
+					</div>
+				</div>
+
+				<form class="mui-input-group" style="margin-top: 10px;font-size: 14px;">
+					<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
+						<label>核定流水号</label>
+						<div class="mui-inline value-style">
+							HD201012931237
+						</div>
+					</div>
+
+					<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
+						<label>险种</label>
+						<div class="mui-inline value-style">
+							居民养老
+						</div>
+					</div>
+
+					<div class="mui-input-row">
+						<label>姓名</label>
+						<div class="mui-inline value-style">
+							魏**
+						</div>
+					</div>
+
+					<div class="btn mui-input-row">
+						<label>缴费年度</label>
+						<div class="mui-inline value-style">
+							2020
+						</div>
+					</div>
+
+					<div class="mui-input-row">
+						<label>缴费金额</label>
+						<div class="mui-inline" style="font-weight: bold;">
+							2145.22
+						</div>
+					</div>
+				</form>
+
+				<div class="btn-next">
+					<button type="button" class="mui-btn mui-btn-danger mui-btn-block">缴费</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+			})(mui);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>缴费金额查询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<style>
+			body{
+				background-color: #ffffff;
+				color: #585858;
+			}
+			.content{
+				
+			}
+			.form-content{
+				box-shadow: 0px 7px 10px -7px #d5d5d5;
+			}
+			
+			.my-title-ico{
+				width: 4px;
+				height: 20px;
+				background: #ff6565;
+				border-radius: 4px;
+				margin-right: 12px;
+			}
+			.mui-content{
+				width: 100%;
+			}
+			.mui-btn-block{
+				margin: 2% 0;
+				padding: 6px 0;
+			}
+			.btn-next{
+				width: 80%;
+				height: 5.0em;
+				margin: 30px auto;
+				text-align: center
+			}
+			
+			.value-style{
+				font-size: 14px;
+				color: #848484;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="content">
+			<div class="form-content">
+				<div class="form-content">
+					<img class="mui-content" src="../static/images/yinhang01.png" />
+					<div class="mui-table-view" style="font-size: 15px;margin-top: -45px;">
+						<div class="mui-table-view-cell mui-media">
+							<div class="my-title-ico mui-pull-left"></div>
+							<div class='mui-ellipsis'>宁夏城乡居民社保缴费</div>
+						</div>
+					</div>
+				</div>
+
+				<form class="mui-input-group" style="margin-top: 10px;font-size: 14px;">
+					<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
+						<label>身份证号码</label>
+						<div class="mui-inline value-style">
+							6422***********0614
+						</div>
+					</div>
+
+					<div id='chooseType' class="mui-input-row">
+						<label>险种</label>
+						<div id="resultType" class="mui-inline value-style">
+							居民养老<span class="mui-icon mui-icon-arrowdown"></span>
+						</div>
+					</div>
+
+					<div class="mui-input-row">
+						<label>姓名</label>
+						<div class="mui-inline value-style">
+							魏**
+						</div>
+					</div>
+
+					<div class="btn mui-input-row" data-options='{"type":"year","beginYear":1899}'>
+						<label>缴费年度</label>
+						<div class="mui-inline value-style">
+							2020
+						</div>
+						<!-- <div id="resultYear" class="mui-inline value-style">
+							2020<span class="mui-icon mui-icon-arrowdown"></span>
+						</div> -->
+					</div>
+
+					<div id='chooseMoney' class="mui-input-row">
+						<label>缴费金额</label>
+						<div id="resultMoney" class="mui-inline value-style">
+							3000<span class="mui-icon mui-icon-arrowdown"></span>
+						</div>
+					</div>
+
+				</form>
+
+				<div class="btn-next">
+					<button type="button" class="mui-btn mui-btn-danger mui-btn-block">缴费</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script type="text/javascript">
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					// 选择险种
+					chooseType();
+					// 选择金额
+					chooseMoney();
+				});
+				var spanIcon = '<span class="mui-icon mui-icon-arrowdown"></span>';
+				// 缴费年度时间选择
+				// chooseDate();
+
+				// 缴费年度时间选择
+				// function chooseDate() {
+				// 	console.log("--------------begin--------------")
+				// 	var btns = $('.btn');
+				// 	btns.each(function(i, btn) {
+				// 		btn.addEventListener('tap', function() {
+				// 			var _self = this;
+				// 			if (_self.picker) {
+				// 				_self.picker.show(function(rs) {
+				// 					$('#resultYear')[0].innerHTML = rs.text + spanIcon;
+				// 					_self.picker.dispose();
+				// 					_self.picker = null;
+				// 				});
+				// 			} else {
+				// 				var optionsJson = this.getAttribute('data-options') || '{}';
+				// 				var options = JSON.parse(optionsJson);
+				// 				var id = this.getAttribute('id');
+				// 				_self.picker = new $.DtPicker(options);
+				// 				_self.picker.show(function(rs) {
+				// 					$('#resultYear')[0].innerHTML = rs.text + spanIcon;
+				// 					_self.picker.dispose();
+				// 					_self.picker = null;
+				// 				});
+				// 			}
+
+				// 		}, false);
+				// 	});
+				// }
+				// 选择险种
+				function chooseType() {
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					var typePicker = new $.PopPicker();
+					typePicker.setData([{
+						value: '0',
+						text: '居民养老'
+					}, {
+						value: '1',
+						text: '居民医保'
+					}]);
+					var chooseTypeButton = doc.getElementById('chooseType');
+					chooseTypeButton.addEventListener('tap', function(event) {
+						typePicker.show(function(items) {
+							$('#resultType')[0].innerHTML = items[0].text + spanIcon;
+						});
+					}, false);
+				}
+				// 选择金额
+				function chooseMoney() {
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					var moneyPicker = new $.PopPicker();
+					moneyPicker.setData([{
+						value: '0',
+						text: '100'
+					}, {
+						value: '1',
+						text: '300'
+					}, {
+						value: '2',
+						text: '500'
+					}, {
+						value: '3',
+						text: '1000'
+					}, {
+						value: '4',
+						text: '2000'
+					}, {
+						value: '5',
+						text: '3000'
+					}]);
+					var chooseMoneyButton = doc.getElementById('chooseMoney');
+					chooseMoneyButton.addEventListener('tap', function(event) {
+						moneyPicker.show(function(items) {
+							$('#resultMoney')[0].innerHTML = items[0].text + spanIcon;
+						});
+					}, false);
+				}
+			})(mui, document);
+		</script>
+	</body>
+</html>

@@ -3,18 +3,26 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>宁夏城乡居民社保缴费</title>
+		<title>缴费信息录入</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+		
 		<link rel="stylesheet" href="../css/mui.min.css">
-
+		
 		<link rel="stylesheet" type="text/css" href="../css/app.css" />
 		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/icons-extra.css" />
 		<style>
 			body{
 				background-color: #ffffff;
+				color: #585858;
+			}
+			.content{
+				
+			}
+			.form-content{
+				box-shadow: 0px 7px 10px -7px #d5d5d5;
 			}
 			
 			.my-title-ico{
@@ -27,55 +35,102 @@
 			.mui-content{
 				width: 100%;
 			}
+			.mui-btn-block{
+				margin: 2% 0;
+				padding: 6px 0;
+			}
+			.btn-next{
+				width: 80%;
+				height: 5.5em;
+				margin: 0 auto;
+				text-align: center
+			}
+			
+			.tips-next{
+				color: #8d8d8d;
+				font-size: 14px;
+				margin: 15px 0;
+			}
+			.mui-icon-extra{
+				font-size: 16px;
+			}
+			.mui-icon{
+				font-size: 16px;
+			}
+			
+			.inquire-history{
+				width: 80%;
+				height: 6em;
+				margin: 35px auto;
+				text-align: center
+			}
+			.value-style{
+				font-size: 14px;
+				color: #848484;
+			}
 			
 		</style>
 	</head>
 
 	<body>
+		<div class="content">
+			<div class="form-content">
+				<div class="form-content">
+					<img class="mui-content" src="../static/images/yinhang01.png" />
+					<div class="mui-table-view" style="font-size: 15px;margin-top: -45px;">
+						<div class="mui-table-view-cell mui-media">
+							<div class="my-title-ico mui-pull-left"></div>
+							<div class='mui-ellipsis'>宁夏城乡居民社保缴费</div>
+						</div>
+					</div>
+				</div>
 
-		<div class="">
-			<div class="" style="box-shadow: 0px 7px 10px -7px #d5d5d5;">
-				<img class="mui-content" src="../static/images/yinhang01.png" />
-				<div class="mui-table-view" style="font-size: 15px;margin-top: -45px;">
-					<div class="mui-table-view-cell mui-media">
-						<div class="my-title-ico mui-pull-left"></div>
-						<div class='mui-ellipsis'>宁夏城乡居民社保缴费</div>
+				<form class="mui-input-group" style="margin-top: 10px;font-size: 14px;">
+					<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
+						<label>身份证号码</label>
+						<input type="text" class="mui-input-clear value-style" placeholder="请输入身份证号码">
+					</div>
+					
+					<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
+						<label>核定流水号</label>
+						<input type="text" class="mui-input-clear value-style" placeholder="请输入核定流水号">
+					</div>
+
+					<div class="mui-input-row">
+						<label>姓名</label>
+						<input type="text" class="mui-input-clear value-style" placeholder="请输入姓名">
+					</div>
+
+					<div class="btn mui-input-row" style="font-weight: bold;" data-options='{"type":"year","beginYear":1899}'>
+						<label>缴费年度</label>
+						<div id="resultYear" class="mui-inline value-style">
+							2020<span class="mui-icon mui-icon-arrowdown"></span>
+						</div>
+					</div>
+
+					<div class="mui-input-row">
+						<label>手机号码</label>
+						<input type="text" class="mui-input-clear value-style" placeholder="请输入手机号码">
+					</div>
+				</form>
+
+				<div class="btn-next">
+					<button type="button" class="mui-btn mui-btn-danger mui-btn-block">下一步</button>
+					<div class="tips-next">
+						<span class="mui-icon-extra mui-icon-extra-lamp"></span>
+						身份证号码或核定流水号任选
 					</div>
 				</div>
 			</div>
 
-			<form class="mui-input-group" style="margin-top: 10px;font-size: 14px;">
-				<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
-					<label>身份证号码</label>
-					<input style="font-size: 14px;" type="text" class="mui-input-clear" placeholder="请输入身份证号码">
+			<div class="inquire-history">
+				<div class="tips-next">
+					<span class="mui-icon mui-icon-search"></span>
+					查询历史缴费
 				</div>
-
-				<div class="mui-input-row">
-					<label>核定流水号</label>
-					<input style="font-size: 14px;" type="number" class="mui-input-clear" placeholder="请输入核定流水号">
-				</div>
-				<div class="mui-input-row">
-					<label>姓名</label>
-					<input style="font-size: 14px;" type="text" class="mui-input-clear" placeholder="请输入姓名">
-				</div>
-
-				<div class="btn mui-input-row" style="font-weight: bold;" data-options='{"type":"year","beginYear":1899}'>
-					<label>缴费年度</label>
-					<div id="result" class="mui-inline">
-						2020<span class="mui-icon mui-icon-arrowdown"></span>
-					</div>
-				</div>
-
-				<div class="mui-input-row">
-					<label>手机号码</label>
-					<input style="font-size: 14px;" type="text" class="mui-input-clear" placeholder="请输入手机号码">
-				</div>
-			</form>
+			</div>
 		</div>
-
-
-
-
+		
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.picker.min.js"></script>
 		<script type="text/javascript">
@@ -84,7 +139,6 @@
 				chooseDate();
 				// 缴费年度时间选择
 				function chooseDate() {
-					console.log("--------------begin--------------")
 					var spanIcon = '<span class="mui-icon mui-icon-arrowdown"></span>';
 					var btns = $('.btn');
 					btns.each(function(i, btn) {
@@ -92,7 +146,7 @@
 							var _self = this;
 							if (_self.picker) {
 								_self.picker.show(function(rs) {
-									$('#result')[0].innerHTML = rs.text + spanIcon;
+									$('#resultYear')[0].innerHTML = rs.text + spanIcon;
 									_self.picker.dispose();
 									_self.picker = null;
 								});
@@ -102,12 +156,12 @@
 								var id = this.getAttribute('id');
 								_self.picker = new $.DtPicker(options);
 								_self.picker.show(function(rs) {
-									$('#result')[0].innerHTML = rs.text + spanIcon;
+									$('#resultYear')[0].innerHTML = rs.text + spanIcon;
 									_self.picker.dispose();
 									_self.picker = null;
 								});
 							}
-
+			
 						}, false);
 					});
 				}
