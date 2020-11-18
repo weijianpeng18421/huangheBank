@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>宁夏城乡居民社保缴费</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<style>
+			body{
+				background-color: #ffffff;
+			}
+			
+			.my-title-ico{
+				width: 4px;
+				height: 20px;
+				background: #ff6565;
+				border-radius: 4px;
+				margin-right: 12px;
+			}
+			.mui-content{
+				width: 100%;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+
+		<div class="">
+			<div class="" style="box-shadow: 0px 7px 10px -7px #d5d5d5;">
+				<img class="mui-content" src="../static/images/yinhang01.png" />
+				<div class="mui-table-view" style="font-size: 15px;margin-top: -45px;">
+					<div class="mui-table-view-cell mui-media">
+						<div class="my-title-ico mui-pull-left"></div>
+						<div class='mui-ellipsis'>宁夏城乡居民社保缴费</div>
+					</div>
+				</div>
+			</div>
+
+			<form class="mui-input-group" style="margin-top: 10px;font-size: 14px;">
+				<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
+					<label>身份证号码</label>
+					<input style="font-size: 14px;" type="text" class="mui-input-clear" placeholder="请输入身份证号码">
+				</div>
+
+				<div class="mui-input-row">
+					<label>核定流水号</label>
+					<input style="font-size: 14px;" type="number" class="mui-input-clear" placeholder="请输入核定流水号">
+				</div>
+				<div class="mui-input-row">
+					<label>姓名</label>
+					<input style="font-size: 14px;" type="text" class="mui-input-clear" placeholder="请输入姓名">
+				</div>
+
+				<div class="btn mui-input-row" style="font-weight: bold;" data-options='{"type":"year","beginYear":1899}'>
+					<label>缴费年度</label>
+					<div id="result" class="mui-inline">
+						2020<span class="mui-icon mui-icon-arrowdown"></span>
+					</div>
+				</div>
+
+				<div class="mui-input-row">
+					<label>手机号码</label>
+					<input style="font-size: 14px;" type="text" class="mui-input-clear" placeholder="请输入手机号码">
+				</div>
+			</form>
+		</div>
+
+
+
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				chooseDate();
+				// 缴费年度时间选择
+				function chooseDate() {
+					console.log("---------------begin---------------")
+					var spanIcon = '<span class="mui-icon mui-icon-arrowdown"></span>';
+					var btns = $('.btn');
+					btns.each(function(i, btn) {
+						btn.addEventListener('tap', function() {
+							var _self = this;
+							if (_self.picker) {
+								_self.picker.show(function(rs) {
+									$('#result')[0].innerHTML = rs.text + spanIcon;
+									_self.picker.dispose();
+									_self.picker = null;
+								});
+							} else {
+								var optionsJson = this.getAttribute('data-options') || '{}';
+								var options = JSON.parse(optionsJson);
+								var id = this.getAttribute('id');
+								_self.picker = new $.DtPicker(options);
+								_self.picker.show(function(rs) {
+									$('#result')[0].innerHTML = rs.text + spanIcon;
+									_self.picker.dispose();
+									_self.picker = null;
+								});
+							}
+
+						}, false);
+					});
+				}
+			})(mui);
+		</script>
+	</body>
+</html>
