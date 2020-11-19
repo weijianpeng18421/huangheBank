@@ -124,7 +124,7 @@
 						身份证号码或核定流水号任选
 					</div>
 				</div>
-				
+
 			</div>
 
 			<div class="inquire-history">
@@ -138,48 +138,56 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.picker.min.js"></script>
 
-		<script>
-			$(function() {
-				$('#card').cbCard();
-				$('.mui-btn').cbNull('mui-input-clear', 'mui-btn');
-				$('.china').cbChina();
-				$('.phone').cbPhone();
-			})
-			
-		</script>
-
 		<script type="text/javascript">
-			(function($) {
-				$.init();
-				chooseDate();
-				// 缴费年度时间选择
-				function chooseDate() {
-					var spanIcon = '<span class="mui-icon mui-icon-arrowdown"></span>';
-					var btns = $('.btn');
-					btns.each(function(i, btn) {
-						btn.addEventListener('tap', function() {
-							var _self = this;
-							if (_self.picker) {
-								_self.picker.show(function(rs) {
-									$('#resultYear')[0].innerHTML = rs.text + spanIcon;
-									_self.picker.dispose();
-									_self.picker = null;
-								});
-							} else {
-								var optionsJson = this.getAttribute('data-options') || '{}';
-								var options = JSON.parse(optionsJson);
-								var id = this.getAttribute('id');
-								_self.picker = new $.DtPicker(options);
-								_self.picker.show(function(rs) {
-									$('#resultYear')[0].innerHTML = rs.text + spanIcon;
-									_self.picker.dispose();
-									_self.picker = null;
-								});
-							}
-						}, false);
+			var result = undefined
+			$(function() {
+					result = $('#card').cbCard();
+					console.log(result)
+					// $('.mui-btn').cbNull('mui-input-clear', 'mui-btn');
+					$('.china').cbChina();
+					$('.phone').cbPhone();
+				}),
+
+
+				(function($) {
+					$.init();
+
+					// 表单校验
+					document.getElementById("btnNext").addEventListener('tap', function(e) {
+						
+						console.log(result)
+						// mui.toast('欢迎体验Hello MUI');
 					});
-				}
-			})(mui);
+
+					chooseDate();
+					// 缴费年度时间选择
+					function chooseDate() {
+						var spanIcon = '<span class="mui-icon mui-icon-arrowdown"></span>';
+						var btns = $('.btn');
+						btns.each(function(i, btn) {
+							btn.addEventListener('tap', function() {
+								var _self = this;
+								if (_self.picker) {
+									_self.picker.show(function(rs) {
+										$('#resultYear')[0].innerHTML = rs.text + spanIcon;
+										_self.picker.dispose();
+										_self.picker = null;
+									});
+								} else {
+									var optionsJson = this.getAttribute('data-options') || '{}';
+									var options = JSON.parse(optionsJson);
+									var id = this.getAttribute('id');
+									_self.picker = new $.DtPicker(options);
+									_self.picker.show(function(rs) {
+										$('#resultYear')[0].innerHTML = rs.text + spanIcon;
+										_self.picker.dispose();
+										_self.picker = null;
+									});
+								}
+							}, false);
+						});
+					}
+				})(mui);
 		</script>
 	</body>
 </html>
