@@ -91,22 +91,18 @@
 				<form class="mui-input-group" style="margin-top: 10px;font-size: 14px;">
 					<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
 						<label>身份证号码</label>
-						<input type="text" id="card" onblur="blurFocus('card')" class="mui-input-clear value-style" placeholder="请输入身份证号码"
+						<input type="text" id="card" onblur="blurFocus('card')" class="next-btn-show value-style" placeholder="请输入身份证号码"
 						 value="">
-
-						<!-- <input type="text" onblur="blurFocus('card')" class="card mui-input-clear value-style" placeholder="请输入身份证号码"
-						  value=""> -->
 					</div>
 
 					<div class="mui-input-row" style="border-top:0.1px solid #FFFFFF;">
 						<label>核定流水号</label>
-						<input type="text" class="mui-input-clear value-style" placeholder="请输入核定流水号" value="">
+						<input type="text" class="next-btn-show value-style" placeholder="请输入核定流水号" value="">
 					</div>
 
 					<div class="mui-input-row">
 						<label>姓名</label>
-						<input type="text" onblur="blurFocus('china')" class="china mui-input-clear value-style" placeholder="请输入姓名"
-						 value="">
+						<input type="text" onblur="blurFocus('china')" class="china next-btn-show value-style" placeholder="请输入姓名" value="">
 					</div>
 
 					<div class="btn mui-input-row" style="font-weight: bold;" data-options='{"type":"year","beginYear":1899}'>
@@ -118,7 +114,7 @@
 
 					<div class="mui-input-row">
 						<label>手机号码</label>
-						<input type="text" onblur="blurFocus('phone')" class="phone mui-input-clear value-style" placeholder="请输入手机号码"
+						<input type="text" onblur="blurFocus('phone')" class="phone next-btn-show value-style" placeholder="请输入手机号码"
 						 value="">
 					</div>
 				</form>
@@ -146,62 +142,61 @@
 
 		<script type="text/javascript">
 			var result = undefined
-			var isAllRight = false
-
 			function blurFocus(name) {
-				isAllRight = true
 				if (name == 'phone') {
 					// 电话号码校验
-					result = $('#phone').cbPhone();
+					result = $('.phone').cbPhone();
 					if (!result.isRight) {
-						sAllRight = false
 						mui.toast(result.text);
 					}
 				} else if (name == 'china') {
 					// 姓名校验（汉字）
 					result = $('.china').cbChina();
 					if (!result.isRight) {
-						sAllRight = false
 						mui.toast(result.text);
 					}
 				} else if (name = 'card') {
 					// 身份证信息校验
 					result = $('#card').cbCard();
 					if (!result.isRight) {
-						sAllRight = false
 						mui.toast(result.text);
 					}
 				}
-				// if (isAllRight) {
-					$('.mui-btn').cbNull('mui-input-clear', 'mui-btn');
-				// }
-				// console.log(result)
+
 			}
 
 			$(function() {
-					$('.mui-btn').cbNull('mui-input-clear', 'mui-btn');
-					// console.log(result)
-					// 
-					// $('.china').cbChina();
-					// $('.phone').cbPhone();
 
-					// console.log("---------------->>这里会重复搞吗", $('#card'))
+					$('.mui-btn').cbNull('next-btn-show', 'mui-btn');
 
 					// 表单校验
 					document.getElementById("btnNext").addEventListener('tap', function(e) {
-						// console.log("------------------")
-						// result = $('#card').cbCard();
-						// mui.toast(result);
+						var errorText = ''
+						result = $('.phone').cbPhone();
+						if (!result.isRight) {
+							errorText = result.text
+							mui.toast(result.text);
+							return
+						}
+						result = $('.china').cbChina();
+						if (!result.isRight) {
+							errorText = result.text
+							mui.toast(result.text);
+							return
+						}
+						result = $('#card').cbCard();
+						if (!result.isRight) {
+							errorText = result.text
+							mui.toast(result.text);
+							return
+						}
+
 					});
 
 				}),
 
 				(function($) {
 					$.init();
-
-
-
-
 
 					chooseDate();
 					// 缴费年度时间选择

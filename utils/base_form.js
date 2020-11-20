@@ -77,7 +77,6 @@ $(function() {
 							$("." + _thisClassName).attr("disabled", "")
 						}
 					})
-
 				});
 			});
 		},
