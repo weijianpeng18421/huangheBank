@@ -121,40 +121,34 @@ $(function() {
 		/*···································华丽的分界线··················································*/
 		//					汉字
 		cbChina: function() {
-			//return China(this);
 			var str = /^[\u4e00-\u9fa5]{0,}$/;
-			var msg = "该区域只能输入中文字符！";
-			blurTest(str, this, msg);
-			return this;
+			var msg = "姓名为汉字";
+			return returnResult(str, msg, this);
 		},
 		//					身份证号
 		cbCard: function() {
 			var str = /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;;
-			var msg = "请正确填写身份号码！";
-			blurTest(str, this, msg);
-			return this;
+			var msg = "身份号码错误";
+			return returnResult(str, msg, this);
 		},
 		//					电话号码
 		cbPhone: function() {
 			var str = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
-			var msg = "请正确填写手机号码！";
-			blurTest(str, this, msg);
-			return this;
+			var msg = "手机号码错误";
+			return returnResult(str, msg, this);
 		},
 		//                  邮箱
 		cbEmail: function() {
 			var str = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 			var msg = "请正确填写邮箱！";
-			blurTest(str, this, msg);
-			return this;
+			return returnResult(str, msg, this);
 		},
 		//                  日期
 		cbTime: function() {
 			var str =
 				/^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;
 			var msg = "yyyy-mm-dd";
-			blurTest(str, this, msg);
-			return this;
+			return returnResult(str, msg, this);
 		},
 		/*···································华丽的分界线··················································*/
 		//					自己写正则表达式和提示语
@@ -169,7 +163,7 @@ $(function() {
 		cbFreeBlur: function(option) {
 			var str = option.regExp;
 			var msg = option.msg;
-			blurTest(str, this, msg);
+			baseTest(str, this, str1);
 			return this;
 		},
 	});
@@ -177,6 +171,7 @@ $(function() {
 	/*···································华丽的分界线··················································*/
 	//				判断所有的键盘按下通用设置
 	function baseTest(str, baseThis, str1) {
+		console.log("---------0002")
 		baseThis.each(function() {
 			$(this).keyup(function() {
 				var _thisValue = $(this).val();
@@ -191,28 +186,23 @@ $(function() {
 		});
 	}
 
-	//				判断所有的失去焦点通用设置
-	function blurTest(str, baseThis, msg) {
-		baseThis.each(function() {
-			$(this).blur(function() {
-				var _thisValue = $(this).val();
-				var _thisNum = _thisValue.length - 1;
-
-				if (_thisValue == "" || _thisNum == '-1') {
-					$(this).val('');
-				} else {
-					if (str.test(_thisValue) == false) {
-						// window.alert(msg)
-						$(this).val("");
-						console.log($(this))
-						$(this).attr("placeholder", msg);
-						return false;
-					} else {
-						return true;
-					}
-				}
-			});
-		});
+	//				返回判断结果
+	function returnResult(str, msg, that) {
+		var _thisValue = $(that).val();
+		let data = {
+			isRight: false,
+			text: msg,
+		};
+		console.log('输入的结果为：', _thisValue)
+		if (str.test(_thisValue) == true) {
+			data.text = "格式正确";
+			data.isRight = true;
+		} else {
+			// 空内容不提示
+			if (_thisValue == '') {
+				data.isRight = true;
+			}
+		}
+		return data;
 	}
-
 })
