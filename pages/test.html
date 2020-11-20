@@ -146,35 +146,42 @@
 
 		<script type="text/javascript">
 			var result = undefined
+			var isAllRight = false
 
 			function blurFocus(name) {
-				let isAllRight = false
+				isAllRight = true
 				if (name == 'phone') {
 					// 电话号码校验
 					result = $('#phone').cbPhone();
 					if (!result.isRight) {
+						sAllRight = false
 						mui.toast(result.text);
 					}
 				} else if (name == 'china') {
 					// 姓名校验（汉字）
 					result = $('.china').cbChina();
 					if (!result.isRight) {
+						sAllRight = false
 						mui.toast(result.text);
 					}
 				} else if (name = 'card') {
 					// 身份证信息校验
 					result = $('#card').cbCard();
 					if (!result.isRight) {
+						sAllRight = false
 						mui.toast(result.text);
 					}
 				}
+				// if (isAllRight) {
+					$('.mui-btn').cbNull('mui-input-clear', 'mui-btn');
+				// }
 				// console.log(result)
 			}
 
 			$(function() {
-
+					$('.mui-btn').cbNull('mui-input-clear', 'mui-btn');
 					// console.log(result)
-					// $('.mui-btn').cbNull('mui-input-clear', 'mui-btn');
+					// 
 					// $('.china').cbChina();
 					// $('.phone').cbPhone();
 
